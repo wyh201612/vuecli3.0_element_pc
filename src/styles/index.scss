@@ -1,0 +1,227 @@
+@import './variables.scss';
+@import './mixin.scss';
+@import './transition.scss';
+@import './element-ui.scss';
+@import './sidebar.scss';
+@import './btn.scss';
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+ul {
+  margin: 0;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.clearfix::after {
+  content: '.';
+  clear: both;
+  display: block;
+  overflow: hidden;
+  font-size: 0;
+  height: 0;
+}
+
+.clearfix:after, .clearfix:before {
+  display: block;
+  content: ' ';
+  height: 0;
+  clear: both;
+}
+
+label {
+}
+
+html {
+  box-sizing: border-box;
+}
+
+#app {
+  background: #f7f7f7;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.padding-content {
+  padding: 4px 0;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+.pr-5 {
+  padding-right: 5px;
+}
+
+.pl-5 {
+  padding-left: 5px;
+}
+
+.block {
+  display: block;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.inlineBlock {
+  display: block;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+a {
+  cursor: pointer;
+}
+//main-container全局样式
+.app-container {
+  padding: 20px;
+}
+
+.components-container {
+  margin: 30px 50px;
+  position: relative;
+}
+
+.pagination-container {
+  margin-top: 30px;
+}
+
+.text-center {
+  text-align: center
+}
+
+.sub-navbar {
+  height: 50px;
+  line-height: 50px;
+  position: relative;
+  width: 100%;
+  text-align: right;
+  padding-right: 20px;
+  transition: 600ms ease position;
+  background: linear-gradient(90deg, rgba(32, 182, 249, 1) 0%, rgba(32, 182, 249, 1) 0%, rgba(33, 120, 241, 1) 100%, rgba(33, 120, 241, 1) 100%);
+
+  .subtitle {
+    font-size: 20px;
+    color: #fff;
+  }
+
+  &.draft {
+    background: #d0d0d0;
+  }
+
+  &.deleted {
+    background: #d0d0d0;
+  }
+}
+
+.link-type,
+.link-type:focus {
+  color: #337ab7;
+  cursor: pointer;
+
+  &:hover {
+    color: rgb(32, 160, 255);
+  }
+}
+
+.filter-container {
+  padding-bottom: 10px;
+
+  .filter-item {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 10px;
+  }
+}
+.orderConfirmation .el-collapse {
+  border: none !important;
+}
+
+.orderConfirmation .el-collapse-item__header {
+  width: 50px;
+  margin-left: calc(100% - 50px);
+  margin-top: -90px;
+  height: 90px !important;
+  line-height: inherit !important;
+  border: none !important;
+  margin-bottom: 10px;
+}
+.orderConfirmation .el-collapse-item__content {
+  overflow: hidden;
+}
+
+.goldShopDetail-container .el-tabs__nav.is-top {
+  transform: translateX(142%) !important;
+}
+
+.goldShopDetail-container .el-tabs__item.is-top {
+  font-size: 18px;
+}
+
+.orderDetail .el-card__body {
+  overflow: hidden;
+}
+
+.accountIinfo .el-divider,.myBank .el-divider,.myOrderList .el-divider{
+  background: rgb(255, 153, 0);
+}
+.title_head_login .el-divider {
+  // float: left;
+}
+.news .el-badge__content.is-fixed.is-dot {
+  top: 10px;
+}
+
+.cart .el-badge__content.is-fixed {
+  top: 10px;
+  right: 6px;
+}
+
