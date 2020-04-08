@@ -43,7 +43,7 @@
                     </el-table-column>
                     <el-table-column label="操作">
                         <template slot-scope="scope">
-                            <el-button type="text" @click="removecartList(scope.row.id)">删除</el-button>
+                            <el-button type="text" @click="removeOne(scope.row.id)">删除</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -53,7 +53,7 @@
                     <el-card class="box-card" shadow="never">
                         <div class="settlement-box-cenyent">
                             <div class="jiesuan-left">
-                                <el-checkbox v-model="checkedAll" @change="toggleSelectionAll([tableData])">全选</el-checkbox>
+                                <el-checkbox v-model="checkedAll" @change="toggleSelectionAll([tableData])" style='margin-right: 10px;'>全选</el-checkbox>
                                 <el-button type="text" @click="removeCheckedGoods()">删除选中的商品</el-button>
                                 <el-button type="text" @click="clearCart()">清理购物车</el-button>
                             </div>
@@ -130,14 +130,12 @@ export default {
                 item['subtotal'] = Number(this.accMul(item.quantity,item.price) + item.discountProcessCostAAA);
                 item['labelList'] = item.goodsInfo.labelList;
             })
-            console.log(data);
             this.tableData = data;
             // 让table表格的复选框默认选中的函数
             this.$nextTick(()=>{
                 this.tableData.map((item) => {
                     this.$refs.multipleTable.toggleRowSelection(item,true);
                 });
-                this.checkedAll = true;
             })
             this.totalBuyNumber()
         },
@@ -155,49 +153,78 @@ export default {
             }
             await this.$api.cartListQuantity(qs.stringify(params),getCookie('accessToken'));
             await this.cartListFn();
-            this.$eventHub.$emit("addCart");
+            await this.$eventHub.$emit("addCart");
         },
         /* 购物车列表删除 输入参数：
         * recordId array 是  购物车记录的id的long类型的数组 */
-        async removecartList(recordId) {
+        async removeOne(recordId) {
             this.GLOBAL.isShowLoading = true;
             let params = {
                 recordId: recordId
             }
-            await this.$api.removecartList(qs.stringify(params),getCookie('accessToken'));
-            await this.cartListFn();
+            this.$confirm('此操作将永久删除该商品, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                this.removecartListFn(params)
+            }).catch(() => {
+            });
         },
         // 删除选中的商品
         async removeCheckedGoods() {
             let arr = [];
+            let recordId = '';
             this.multipleSelection.map((item) => {
                 arr.push(item.id)
             })
-            let recordId = arr.join(',');
+            recordId = arr.join(',');
             recordId.substring(0, recordId.lastIndexOf(','));
-            console.log(recordId)
+            console.log('删除选中的商品的id：',recordId)
             this.GLOBAL.isShowLoading = true;
             let params = {
                 recordId: recordId
             }
-            await this.$api.removecartList(qs.stringify(params),getCookie('accessToken'));
-            await this.cartListFn();
+            this.$confirm('此操作将永久删除选中的商品, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                this.removecartListFn(params)
+            }).catch(() => {
+            });
         },
         // 清空购物车
         async clearCart() {
             let arr = [];
+            let recordId = '';
             this.tableData.map((item) => {
                 arr.push(item.id)
             })
-            let recordId = arr.join(',');
+            recordId = arr.join(',');
             recordId.substring(0, recordId.lastIndexOf(','));
-            console.log(recordId)
+            console.log('清空购物车的id：',recordId)
             this.GLOBAL.isShowLoading = true;
             let params = {
                 recordId: recordId
             }
+            this.$confirm('此操作将永久删除购物车, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                this.removecartListFn(params)
+            }).catch(() => {
+            });
+        },
+        async removecartListFn(params) {
             await this.$api.removecartList(qs.stringify(params),getCookie('accessToken'));
             await this.cartListFn();
+            await this.$message({
+                type: 'success',
+                message: '删除成功!'
+            });
+            await this.$eventHub.$emit("addCart");
         },
         // 计算选择总额和数量
         checkedTotalPrice() {
@@ -227,7 +254,6 @@ export default {
         changeNumber(id) {
             console.log(id)
             this.tableData.map((item)=>{
-                console.log(111)
                 if(id==item.id) {
                     item['discountProcessCostAAA'] = Number(item.goodsInfo.discountProcessCost) * item.quantity * item.gram;
                     item['subtotal'] = Number(this.accMul(item.quantity,item.price) + item.discountProcessCostAAA);
@@ -237,10 +263,15 @@ export default {
             this.checkedTotalPrice();
             this.totalBuyNumber();
         },
-        // 单个选择操作
+        // 单个选择操作 当选择项发生变化时会触发该事件
         handleSelectionChange(val) {
             console.log(val);
             this.multipleSelection = val;
+            if(this.multipleSelection.length>=this.tableData.length) {
+                this.checkedAll = true;
+            } else {
+                this.checkedAll = false;
+            }
             this.checkedTotalPrice();
             this.totalBuyNumber();
         },

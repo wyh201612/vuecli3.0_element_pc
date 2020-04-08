@@ -1,0 +1,46 @@
+@import './variables.scss';
+
+@mixin colorFont($color) {
+    color: $color;
+  
+    &:hover {
+        color: $color;
+    
+        &:before,
+        &:after {
+            background: $color;
+        }
+    }
+}
+
+.blue-font {
+    @include colorFont($blue)
+}
+  
+.light-blue-font {
+    @include colorFont($light-blue)
+}
+  
+.red-font {
+    @include colorFont($red)
+}
+  
+.pink-font {
+    @include colorFont($pink)
+}
+  
+.green-font {
+    @include colorBtn($green)
+}
+  
+.tiffany-font {
+    @include colorFont($tiffany)
+}
+  
+.yellow-font {
+    @include colorFont($yellow)
+}
+
+.panGreen-font {
+    @include colorFont($panGreen)
+}

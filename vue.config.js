@@ -38,7 +38,7 @@ module.exports = {
     // babel-loader 默认会跳过 node_modules 依赖。
     // 通过这个选项可以显式转译一个依赖。
     transpileDependencies: [
-        /* string or regex */
+        
     ],
 
     // 是否为生产环境构建生成 source map？
@@ -47,6 +47,8 @@ module.exports = {
     // 调整内部的 webpack 配置。
     // 查阅 https://github.com/vuejs/vue-docs-zh-cn/blob/master/vue-cli/webpack.md
     chainWebpack: config => {
+        // 在chainWebpack中添加下面的代码
+        config.entry('main').add('babel-polyfill') // main是入口js文件
         // 移除 prefetch 插件,解决组件懒加载失效的问题
         config.plugins.delete('prefetch')
         // 添加新的svg-sprite-loader处理svgIcon

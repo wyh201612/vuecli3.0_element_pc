@@ -226,8 +226,6 @@ export default {
         
     },
     mounted() {
-        // console.log(this.$route.query.freight)
-        // console.log(JSON.parse(decodeURI(decodeURI(this.$route.query.checkedSkuData))))
         let _this = this;
         _this.get_address();
         _this._getJsonData();
@@ -271,7 +269,6 @@ export default {
         },
         // 改变数量
         changeNumber(currentValue, oldValue) {
-            
             this.totalPrice();
             this.totalBuyNumber();
         },
@@ -466,9 +463,9 @@ export default {
                         'skuId': '',
                         'quantity': ''
                     }
-                    if(_this.getRequest().isCart == 'false') {
+                    if(_this.getRequest().isCart == 'false') { // 直接下单
                         obj.skuId = item.id;
-                    } else {
+                    } else { // 购物车下单
                         obj.skuId = item.skuId;
                     }
                     obj.quantity = item.quantity;
@@ -580,107 +577,107 @@ export default {
 </script>
 <style lang="scss" scoped>
     .el-collapse {
-    border: none !important;
-}
+        border: none !important;
+    }
 
-.el-collapse-item__header {
-    width: 50px;
-    margin-left: calc(100% - 50px);
-    margin-top: -90px;
-    height: 90px !important;
-    line-height: inherit !important;
-    border: none !important;
-    margin-bottom: 10px;
-}
-.el-collapse-item__content {
-    overflow: hidden;
-}
-.orderConfirmation {
-    font-size: 14px;
-    padding-top: 38px;
-    background-color: #f7f7f7;
-}
-.orderConfirmation .top-desc {
-    margin: 0 auto;
-    padding: 20px;
-    width: 1160px;
-    background-color: #fff;
-}
+    .el-collapse-item__header {
+        width: 50px;
+        margin-left: calc(100% - 50px);
+        margin-top: -90px;
+        height: 90px !important;
+        line-height: inherit !important;
+        border: none !important;
+        margin-bottom: 10px;
+    }
+    .el-collapse-item__content {
+        overflow: hidden;
+    }
+    .orderConfirmation {
+        font-size: 14px;
+        padding-top: 38px;
+        background-color: #f7f7f7;
+    }
+    .orderConfirmation .top-desc {
+        margin: 0 auto;
+        padding: 20px;
+        width: 1160px;
+        background-color: #fff;
+    }
 
-.address-box {
-    
-}
+    .address-box {
+        margin-bottom: 10px;
+    }
 
-.address-item {
-    width: 252px;
-    padding: 10px 10px 0px 10px;
-    border: 1px solid #999;
-    cursor: pointer;
-    float: left;
-    margin-right: 10px;
-    color: #999;
-}
+    .address-item {
+        width: 252px;
+        padding: 10px 10px 0px 10px;
+        border: 1px solid #999;
+        cursor: pointer;
+        float: left;
+        margin-right: 10px;
+        color: #999;
+    }
 
-.address-item.active {
-    border: 1px solid #f00;
-    color: #333;
-}
+    .address-item.active {
+        border: 1px solid #f00;
+        color: #333;
+    }
 
-.address-msg {
-    word-wrap: break-word;
-    word-break: normal;
-}
+    .address-msg {
+        word-wrap: break-word;
+        word-break: normal;
+    }
 
 
-.settlement {
-    background-color: #fff;
-    padding: 20px 0;
-    overflow: hidden;
-    margin-top: 50px;
-}
+    .settlement {
+        background-color: #fff;
+        padding: 20px 0;
+        overflow: hidden;
+        margin-top: 50px;
+    }
 
-.settlement .settlement-box {
-    margin: 0 auto 0;
-    width: 1200px;
-}
+    .settlement .settlement-box {
+        margin: 0 auto 0;
+        width: 1200px;
+    }
 
-.settlement .settlement-box .settlement-box-cenyent {
-    overflow: hidden;
-    height: 70px;
-    
-}
+    .settlement .settlement-box .settlement-box-cenyent {
+        overflow: hidden;
+        height: 70px;
+        
+    }
 
-.box-card {
-    border: none !important;
-}
+    .box-card {
+        border: none !important;
+    }
 
-.box-card .el-card__body {
-    padding: 0;
-}
+    .box-card .el-card__body {
+        padding: 0;
+    }
 
-.jiesuan-right {
-    float: right;
-}
+    .jiesuan-right {
+        float: right;
+    }
 
-.jiesuan-right span {
-    font-size: 14px;
-}
+    .jiesuan-right span {
+        font-size: 14px;
+    }
 
-.jiesuan-right .settlement-btn {
-    display: inline-block;
-    width: 180px;
-    line-height: 70px;
-    background-image: linear-gradient(135deg, rgb(239, 197, 144) 0%, rgb(187, 141, 72) 100%);
-    color: #fff;
-    text-align: center;
-    margin-left: 20px;
-    cursor: pointer;
-    float: right;
-}
+    .jiesuan-right .settlement-btn {
+        display: inline-block;
+        width: 180px;
+        line-height: 70px;
+        background-image: linear-gradient(135deg, rgb(239, 197, 144) 0%, rgb(187, 141, 72) 100%);
+        color: #fff;
+        text-align: center;
+        margin-left: 20px;
+        cursor: pointer;
+        float: right;
+    }
 
-.jiesuan-right span.total,
-.jiesuan-right span.totalNumber {
-    color: #f00;
-    font-size: 24px;
-}
+    .jiesuan-right span.total,
+    .jiesuan-right span.totalNumber {
+        color: #f00;
+        font-size: 24px;
+    }
 </style>

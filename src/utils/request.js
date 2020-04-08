@@ -26,7 +26,6 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(
   config => {
-    console.log(global_info.isShowLoading)
     if(global_info.isShowLoading==true) {
       startLoading();
     }

@@ -101,7 +101,6 @@ export default {
             font-size: 12px;
             line-height: 16px;
             color: #999999;
-            margin: 0;
         }
         .shop-list {
             list-style: none;
@@ -184,7 +183,6 @@ export default {
                     float: left;
                     width: 35px;
                     margin-right: 15px;
-                    margin-top: 26px;
                 }
                 p {
                     padding-top: 0;

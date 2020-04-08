@@ -93,7 +93,7 @@
             </div>
         </div>
         <div class="bottom-detail">
-            <div style="text-align: center;font-size: 18px;border-bottom: 1px solid #f1f1f1;">
+            <div style="font-size: 18px;border-bottom: 1px solid #f1f1f1;">
                 <span style="padding: 10px 0;display: inline-block;color:rgb(187, 141, 72); margin: 0 10px;cursor: pointer;" @click="goAnchor('#zz');">商品详情</span>
                 <span style="padding: 10px 0;display: inline-block;color:rgb(187, 141, 72);margin: 0 10px;cursor: pointer;" @click="goAnchor('#aa');">保养提示</span>
                 <span style="padding: 10px 0;display: inline-block;color:rgb(187, 141, 72);margin: 0 10px;cursor: pointer;" @click="goAnchor('#ss');">购买须知</span>
@@ -419,7 +419,6 @@ export default {
                 font-weight: normal;
             }
             p {
-                margin: 0;
                 font-size: 12px;
                 color: #999999;
                 line-height: 16px;

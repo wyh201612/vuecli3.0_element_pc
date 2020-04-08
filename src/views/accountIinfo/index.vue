@@ -15,7 +15,7 @@
                 </div>
                 <div class="info_centent_top_right">
                     <div class="info">
-                        <span>66</span>
+                        <span class="red-btn">66</span>
                         <span>金豆</span>
                     </div>
                     <div class="info">
@@ -97,8 +97,21 @@
             async getUserAccount() {
                 this.GLOBAL.isShowLoading = true;
                 let data = await this.$api.getUserInfo('',getCookie('accessToken'));
+                await this.getActivityCouponMemberList();
                 this.userInfo = data;
             },
+            /**
+             * 个人中心优惠券列表
+             * method： GET
+             * 接口地址：  activity/coupon/member/list
+             * type int 是  类型：0-黄金红包；1-回租福利券；2-商城满减券
+             */
+            async getActivityCouponMemberList() {
+                let params = {
+                    type: 2
+                }
+                let data = await this.$api.getActivityCouponMemberList(params,getCookie('accessToken'));
+            }
         }
     }
 

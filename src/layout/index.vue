@@ -162,7 +162,7 @@ export default {
       }
       setInterval(function(){
         _this.getCurrentGoldPrice()
-      },5000)
+      },10000)
     },
     watch: {
       path(val){
@@ -183,7 +183,7 @@ export default {
       getCurrentGoldPrice() {
         let _this = this;
         _this.GLOBAL.isShowLoading = false;
-        let goldPrice = _this.$api.getCurrentGoldPrice('',true);
+        let goldPrice = _this.$api.getCurrentGoldPrice('');
         goldPrice = Promise.resolve(goldPrice)
         goldPrice.then(function (result) {
           _this.SET_GOLDPRICE(result)
@@ -485,7 +485,7 @@ export default {
   .footer {
     min-width: 1200px;
     background-color: #474d56;
-    padding: 54px 0 30px 0;
+    padding: 30px 0 10px 0;
     .footer_content {
       width: 1200px;
       margin: 0 auto;
@@ -542,9 +542,7 @@ export default {
           width: 100px;
           height: 100px;
         }
-        p {
-          margin: 0;
-        }
+        p {}
       }
     }
     .footer_info {
@@ -556,7 +554,7 @@ export default {
       letter-spacing: 0px;
       color: #ffffff;
       text-align: center;
-      margin-top: 69px;
+      margin-top: 30px;
     }
   }
 </style>
